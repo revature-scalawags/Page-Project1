@@ -15,12 +15,15 @@ object MovieAns extends App {
     val (res, isValid) = ui.promptUsrQuestion
     question = res
     !isValid
-  })()
+  }) ()
 
   val sql = db.getQueryString(question)
+
+  if (sql == "close") {
+    println("\nHave a nice day.")
+    System.exit(-1)
+  }
   val dataResultSet = db.queryHive(sql)
 
-while (dataResultSet.next()) {
-  println(dataResultSet.getString("title"),  dataResultSet.getString("tag"), dataResultSet.getLong("relevance"))
-}
+  ui.printResults
 }

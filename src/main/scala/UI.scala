@@ -1,6 +1,9 @@
 
 import scala.Console.{BLUE => bu, CYAN => cy, GREEN => gr, MAGENTA => mg, RED => rd, RESET => rt, YELLOW => yl}
+import MovieAns.{dataResultSet, question}
 import java.io.BufferedWriter
+
+
 import scala.io.StdIn.{readInt, readLine}
 import scala.util.control.Breaks._
 
@@ -58,5 +61,23 @@ case class UI() {
         return (-1, false)
     }
     (input, true)
+  }
+
+  def printResults: Unit = {
+    if (question == 1) {
+      while (dataResultSet.next())
+        println(dataResultSet.getString("title"), dataResultSet.getString("popularity"))
+    }
+    if (question == 2) {
+      while (dataResultSet.next())
+        println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
+    }
+    if (question == 3) {
+      while (dataResultSet.next())
+        println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
+    }
+    while (dataResultSet.next()) {
+      println(dataResultSet.getString("title"), dataResultSet.getString("tag"), dataResultSet.getBigDecimal("relevance"))
+    }
   }
 }

@@ -39,6 +39,10 @@ case class HiveJdbcClient(connection: Connection) {
         |GROUP BY rs.movieId, title, tag, relevance
         |ORDER BY relevance
         |""".stripMargin
+    case _ => {
+      connection.close()
+      "close"
+    }
   }
 
   def queryHive(sql: String): ResultSet = {
