@@ -1,6 +1,6 @@
 import java.sql.{Connection, DriverManager, Statement}
 
-case class WikiDAO() {
+case class HiveJdbcClient() {
   private final val connectionString = "jdbc:hive2://localhost:10000/default"
   private final val driver = "org.apache.hive.jdbc.HiveDriver"
   private final val tableName = "ratings"
@@ -21,6 +21,5 @@ case class WikiDAO() {
   while (res.next()) {
     println(res.getString("userId"))
   }
-
   connection.close()
 }
