@@ -1,10 +1,9 @@
 
-import scala.Console.{BLUE => bu, CYAN => cy, GREEN => gr, MAGENTA => mg, RED => rd, RESET => rt, YELLOW => yl}
-import MovieAns.{dataResultSet, question}
 import java.io.BufferedWriter
+import java.sql.ResultSet
 
-
-import scala.io.StdIn.{readInt, readLine}
+import scala.Console.{BLUE => bu, CYAN => cy, GREEN => gr, MAGENTA => mg, RED => rd, RESET => rt}
+import scala.io.StdIn.readInt
 import scala.util.control.Breaks._
 
 case class UI() {
@@ -40,7 +39,7 @@ case class UI() {
     println(s"${gr}1$rt.) What are the most popular movies ever?")
     println(s"${gr}2$rt.) What are the worst popular movies?")
     println(s"${gr}3$rt.) What are some good however, unpopular movies?")
-    println(s"${gr}4$rt.) What movies correlate closely to tag descriptions?")
+    println(s"${gr}4$rt.) What movies correlate closely to their tag descriptions?")
     println(s"${gr}5$rt.) Quit.\n")
     print("Select a Number: ")
 
@@ -63,7 +62,7 @@ case class UI() {
     (input, true)
   }
 
-  def printResults: Unit = {
+  def printResults(dataResultSet: ResultSet, question: Int): Unit = {
     if (question == 1) {
       while (dataResultSet.next())
         println(dataResultSet.getString("title"), dataResultSet.getString("popularity"))
@@ -76,8 +75,10 @@ case class UI() {
       while (dataResultSet.next())
         println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
     }
-    while (dataResultSet.next()) {
-      println(dataResultSet.getString("title"), dataResultSet.getString("tag"), dataResultSet.getBigDecimal("relevance"))
+    if (question == 4) {
+      while (dataResultSet.next()) {
+        println(dataResultSet.getString("title"), dataResultSet.getString("tag"), dataResultSet.getString("relevance"))
+      }
     }
   }
 }

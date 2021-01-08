@@ -25,5 +25,23 @@ object MovieAns extends App {
   }
   val dataResultSet = db.queryHive(sql)
 
-  ui.printResults
+//  ui.printResults(dataResultSet, question)
+
+  if (question == 1) {
+    while (dataResultSet.next())
+      println(dataResultSet.getString("title"), dataResultSet.getString("popularity"))
+  }
+  if (question == 2) {
+    while (dataResultSet.next())
+      println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
+  }
+  if (question == 3) {
+    while (dataResultSet.next())
+      println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
+  }
+  if (question == 4) {
+    while (dataResultSet.next()) {
+      println(dataResultSet.getString("title"), dataResultSet.getString("tag"), dataResultSet.getString("relevance"))
+    }
+  }
 }

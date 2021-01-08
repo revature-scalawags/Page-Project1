@@ -17,7 +17,7 @@ case class HiveJdbcClient(connection: Connection) {
         |FROM ratings r
         |JOIN movies m ON r.movieId = m.movieId
         |GROUP BY rating, title
-        |HAVING rating < 3.5
+        |HAVING rating < 2.5
         |ORDER BY popularity
         |""".stripMargin
     case 3 =>
@@ -39,27 +39,24 @@ case class HiveJdbcClient(connection: Connection) {
         |GROUP BY rs.movieId, title, tag, relevance
         |ORDER BY relevance
         |""".stripMargin
-    case _ => {
+    case _ =>
       connection.close()
       "close"
-    }
   }
 
   def queryHive(sql: String): ResultSet = {
-    val stmt: Statement = connection.createStatement()
-    val res: ResultSet = stmt.executeQuery(sql)
-
+      val stmt = connection.createStatement()
+      val res: ResultSet = stmt.executeQuery(sql)
     res
   }
 
-  def closeHive = connection.close()
+  def closeHive(): Unit = connection.close()
 }
 
 
 object HiveJdbcClient {
   private final val connectionString = "jdbc:hive2://localhost:10000/default"
   private final val driver = "org.apache.hive.jdbc.HiveDriver"
-  private final val tableName = "ratings"
   var connection: Connection = _
 
   try {
