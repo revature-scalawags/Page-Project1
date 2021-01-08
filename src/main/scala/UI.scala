@@ -9,8 +9,8 @@ case class UI() {
     println(
       s"""
         ##########################################################################################################
-        #--------------------------------------------${cy}Welcome Movie Answers$rt----------------------------------------#
-        #      Your program to query a Hadoop cluster using Hive to answer any one of ${mg}four$rt great                  #
+        #--------------------------------------------${cy}Welcome Movie Answers$rt---------------------------------------#
+        #      Your program to query a Hadoop cluster using Hive to answer any one of ${mg}four$rt great                 #
         $bu#$rt                                          questions about movies..                                      $bu#
         #                                                                                                        #
         ##########################################################################################################

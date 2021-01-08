@@ -142,6 +142,7 @@ project/plugins/project/
 
 ### custom ###
 data/*
+log.txt
 
 ### macOS ###
 # General
