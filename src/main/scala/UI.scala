@@ -1,12 +1,13 @@
 
-import java.io.BufferedWriter
+import java.io.{BufferedWriter, File, FileWriter}
+import java.nio.file.{Files, Paths}
 import java.sql.ResultSet
 
 import scala.Console.{BLUE => bu, CYAN => cy, GREEN => gr, MAGENTA => mg, RED => rd, RESET => rt}
 import scala.io.StdIn.readInt
 import scala.util.control.Breaks._
 
-case class UI() {
+case class UI(bw: BufferedWriter) {
   def welcomeMessage: Unit = {
     println(
       s"""
@@ -20,7 +21,7 @@ case class UI() {
     )
   }
 
-  def logger(message: String, bw: BufferedWriter): Unit = {
+  def logger(message: String): Unit = {
     val now = getTimeStamp
     try {
       bw.newLine()
@@ -62,23 +63,27 @@ case class UI() {
     (input, true)
   }
 
-  def printResults(dataResultSet: ResultSet, question: Int): Unit = {
-    if (question == 1) {
+  def printResults(dataResultSet: ResultSet, question: Int): Unit = question match {
+    case 1 =>
       while (dataResultSet.next())
         println(dataResultSet.getString("title"), dataResultSet.getString("popularity"))
-    }
-    if (question == 2) {
+    case 2 =>
       while (dataResultSet.next())
         println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
-    }
-    if (question == 3) {
+    case 3 =>
       while (dataResultSet.next())
         println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
-    }
-    if (question == 4) {
+    case 4 =>
       while (dataResultSet.next()) {
         println(dataResultSet.getString("title"), dataResultSet.getString("tag"), dataResultSet.getString("relevance"))
-      }
     }
   }
+}
+
+object UI {
+  val file = new File("log.txt")
+  val hasLogFile: Boolean = Files.exists(Paths.get("log.txt"))
+  val bw = new BufferedWriter(new FileWriter(file, hasLogFile))
+
+  def apply(): UI = new UI(bw)
 }

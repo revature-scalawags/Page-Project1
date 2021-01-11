@@ -2,6 +2,12 @@ import java.sql.{Connection, DriverManager, ResultSet, Statement}
 
 case class HiveJdbcClient(connection: Connection) {
 
+  def queryHive(sql: String): ResultSet = {
+      val stmt = connection.createStatement()
+      val res = stmt.executeQuery(sql)
+    res
+  }
+
   def getQueryString(question: Int): String = question match {
     case 1 =>
       """
@@ -40,14 +46,8 @@ case class HiveJdbcClient(connection: Connection) {
         |ORDER BY relevance
         |""".stripMargin
     case _ =>
-      connection.close()
+      closeHive()
       "close"
-  }
-
-  def queryHive(sql: String): ResultSet = {
-      val stmt = connection.createStatement()
-      val res: ResultSet = stmt.executeQuery(sql)
-    res
   }
 
   def closeHive(): Unit = connection.close()
