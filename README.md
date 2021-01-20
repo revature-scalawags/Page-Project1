@@ -41,7 +41,7 @@ the dataset used was their *25M Dataset*. The README for this data can be viewed
     <li>genome-tags.csv (<i>rqd for question 4 only</i>)</li>     
 </details>           
 
-This application will look for your hadoop file system running on localhost//:10000     
+This application will look for your Hive cluster running on the default ht<span>tp://</span>localhost:10000.     
 No username or password is required.
 
 ## Project:
