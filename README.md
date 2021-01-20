@@ -34,14 +34,12 @@ This application uses Hive ontop of a Yarn cluster to query the MovieLens datase
 These datasets can be acquired from *[movielens](https://grouplens.org/datasets/movielens/)*.           
 the dataset used was their *25M Dataset*. The README for this data can be viewed *[here](http://files.grouplens.org/datasets/movielens/ml-25m-README.html)*.          
 <details>
-        <summary>__Files loaded into your hdfs__:</summary>
-        <p>-ratings.csv\ -tags.csv\ -genome-scores.csv (*rqd for question 4 only*)\ -genome-tags.csv (*rqd for question 4 only*)\ </p>
+    __<summary>Files loaded into your hdfs:</summary>__
+    -<p>ratings.csv</p>   
+    -<p>tags.csv</p>    
+    -<p>genome-scores.csv (*rqd for question 4 only*)</p>    
+    -<p>genome-tags.csv (*rqd for question 4 only*)</p>     
 </details>      
-Files loaded into your hdfs:
-+ ratings.csv
-+ tags.csv
-+ genome-scores.csv (rqd for question 4 only)
-+ genome-tags.csv (rqd for question 4 only)
 
 ## Project:
 [Repo](https://github.com/revature-scalawags/Page-Project1)    
