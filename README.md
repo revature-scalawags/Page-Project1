@@ -9,7 +9,7 @@ CLI application built to use Hive for querying a Yarn cluster running on a local
 >* [Project Info](#project)
 >* [Issues](#issues)
 
-Markup :  - - - -
+- - - -
 
 ## Description
 GroupLens Research has collected and made available rating data sets from the MovieLens web site (http://movielens.org). MovieLens 25M movie ratings. Stable benchmark dataset. 25 million ratings and one million tag applications applied to 62,000 movies by 162,000 users. Includes tag genome data with 15 million relevance scores across 1,129 tags. Released 12/2019
@@ -40,7 +40,7 @@ Files loaded into your hdfs:
 ## Project:
 [Repo](https://github.com/revature-scalawags/Page-Project1)    
 [My Github](https://github.com/drthisguy)    
-Email: [page.c.tyler@gmail.com]       
+Email: page.c.tyler@gmail.com       
 
 ## Know Issues:
 None known at the moment.  
