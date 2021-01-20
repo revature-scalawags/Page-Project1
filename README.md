@@ -3,7 +3,7 @@ CLI application built to use Hive for querying a Yarn cluster running on a local
 
 - - - -
 
-## Table of contents
+>## Table of contents
 >* [Description](#description)
 >* [Screen Grab](#screen)
 >* [Tech Used](#tech)
@@ -14,9 +14,9 @@ CLI application built to use Hive for querying a Yarn cluster running on a local
 
 
 ## Description
-GroupLens Research has collected and made available rating data sets from the MovieLens web site (http://movielens.org). MovieLens 25M movie ratings. Stable benchmark dataset. 25 million ratings and one million tag applications applied to 62,000 movies by 162,000 users. Includes tag genome data with 15 million relevance scores across 1,129 tags. Released 12/2019
+GroupLens Research has collected and made available their ratings datasets available at their  ___[MovieLens Website](http://movielens.org)___.  The MovieLens 25M movie ratings stable benchmark dataset describes 5-star ratings and free-text tagging activity. 25,000,095 ratings and 1,093,360 tag applications are applied to 62,423 movies by 162,541 users. It includes tag genome data with 15 million relevance scores across 1,129 tags. The data was generated between January of 1995 and November of 2019.  Released 11/2019.
 
-This application uses Hive to query the MovieLens dataset and answers the following questions:
+This application uses Hive ontop of a Yarn cluster to query the MovieLens dataset and answers the following questions:
 * What are the most popular movies ever?
 * What are the 'worst' popular movies?
 * What are some good however, unpopular movies?
@@ -32,7 +32,11 @@ This application uses Hive to query the MovieLens dataset and answers the follow
 
 ## Usage
 These datasets can be acquired from *[movielens](https://grouplens.org/datasets/movielens/)*.           
-the dataset used was their *25M Dataset*. The README for this data can be viewed *[here](http://files.grouplens.org/datasets/movielens/ml-25m-README.html)*.                
+the dataset used was their *25M Dataset*. The README for this data can be viewed *[here](http://files.grouplens.org/datasets/movielens/ml-25m-README.html)*.          
+<details>
+        <summary>__Files loaded into your hdfs__:</summary>
+        <p>-ratings.csv\ -tags.csv\ -genome-scores.csv (*rqd for question 4 only*)\ -genome-tags.csv (*rqd for question 4 only*)\ </p>
+</details>      
 Files loaded into your hdfs:
 + ratings.csv
 + tags.csv
