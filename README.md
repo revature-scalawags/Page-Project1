@@ -34,11 +34,11 @@ This application uses Hive ontop of a Yarn cluster to query the MovieLens datase
 These datasets can be acquired from *[movielens](https://grouplens.org/datasets/movielens/)*.           
 the dataset used was their *25M Dataset*. The README for this data can be viewed *[here](http://files.grouplens.org/datasets/movielens/ml-25m-README.html)*.          
 <details>
-    __<summary>Files loaded into your hdfs:</summary>__
-    -<p>ratings.csv</p>   
-    -<p>tags.csv</p>    
-    -<p>genome-scores.csv (*rqd for question 4 only*)</p>    
-    -<p>genome-tags.csv (*rqd for question 4 only*)</p>     
+    <summary><b><i>Files loaded into your hdfs</i></b>:</summary>
+    <li>ratings.csv</li>   
+    <li>tags.csv</li>    
+    <li>genome-scores.csv (<i>rqd for question 4 only</i>)</li>    
+    <li>genome-tags.csv (<i>rqd for question 4 only</i>)</li>     
 </details>      
 
 ## Project:
