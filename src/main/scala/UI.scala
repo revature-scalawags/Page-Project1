@@ -21,20 +21,6 @@ case class UI(bw: BufferedWriter) {
     )
   }
 
-  def logger(message: String): Unit = {
-    val now = getTimeStamp
-    try {
-      bw.newLine()
-      bw.write(now + ": " + message)
-      bw.newLine()
-    } catch {
-      case _: Throwable => println(s"$rt${rd}Logging Failure$rt")
-    }
-    println(message)
-  }
-
-  def getTimeStamp: String = java.time.LocalDateTime.now().toString
-
   def promptUsrQuestion: (Int, Boolean) = {
     println(s"\nChoose a question for the answers you seek: \n")
     println(s"${gr}1$rt.) What are the most popular movies ever?")
@@ -50,14 +36,16 @@ case class UI(bw: BufferedWriter) {
         while (true) {
           input = readInt()
           if (input >= 1 && input <= 5) {
+            this.logger(s"question $input selected")
             break
           }
           print(s"Please select a valid choice from ${rd}1$rt to ${rd}5$rt: ")
         }
       )
     } catch {
-      case _: NumberFormatException | _: ArrayIndexOutOfBoundsException =>
+      case e: NumberFormatException | _: ArrayIndexOutOfBoundsException =>
         println(s"$rd\nYou MUST select an integer value between 1 and 5$rt.")
+        logger(e.getMessage)
         return (-1, false)
     }
     (input, true)
@@ -77,8 +65,25 @@ case class UI(bw: BufferedWriter) {
         println(s"Title: ${rs.getString("title")}",
           s"Tag: ${rs.getString("popularity")}",
           s"Relevance: ${rs.getString("popularity")}")
-    }
+      }
   }
+
+  def logger(message: String): Unit = {
+    val now = getTimeStamp
+    try {
+      bw.newLine()
+      bw.write(now + ": " + message)
+      bw.newLine()
+    } catch {
+      case _: Throwable => println(s"$rt${rd}Logging Failure$rt")
+    }
+    if (message == "user exit") {
+      bw.close()
+    }
+    println(message)
+  }
+
+  def getTimeStamp: String = java.time.LocalDateTime.now().toString
 }
 
 object UI {
