@@ -34,17 +34,20 @@ This application uses Hive ontop of a Yarn cluster to query the MovieLens datase
 These datasets can be acquired from *[movielens](https://grouplens.org/datasets/movielens/)*.           
 the dataset used was their *25M Dataset*. The README for this data can be viewed *[here](http://files.grouplens.org/datasets/movielens/ml-25m-README.html)*.          
 <details>
-    <summary><b><i>Files loaded into your hdfs</i></b>:</summary>
+    <summary><b><i>View files needed in your hdfs:</i></b></summary>
     <li>ratings.csv</li>   
     <li>tags.csv</li>    
     <li>genome-scores.csv (<i>rqd for question 4 only</i>)</li>    
     <li>genome-tags.csv (<i>rqd for question 4 only</i>)</li>     
-</details>      
+</details>           
+
+This application will look for your hadoop file system running on localhost//:10000     
+No username or password is required.
 
 ## Project:
 [Repo](https://github.com/revature-scalawags/Page-Project1)    
 [My Github](https://github.com/drthisguy)    
-Email: page.c.tyler@gmail.com       
+*Email*: page.c.tyler@gmail.com       
 
 ## Known Issues:
 None known at the moment.  
