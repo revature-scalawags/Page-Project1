@@ -8,7 +8,7 @@ import scala.io.StdIn.readInt
 import scala.util.control.Breaks._
 
 case class UI(bw: BufferedWriter) {
-  def welcomeMessage: Unit = {
+  def welcomeMessage(): Unit = {
     println(
       s"""
         ##########################################################################################################
@@ -63,27 +63,30 @@ case class UI(bw: BufferedWriter) {
     (input, true)
   }
 
-  def printResults(dataResultSet: ResultSet, question: Int): Unit = question match {
+  def printResults(rs: ResultSet, question: Int): Unit = question match {
     case 1 =>
-      while (dataResultSet.next())
-        println(dataResultSet.getString("title"), dataResultSet.getString("popularity"))
-    case 2 =>
-      while (dataResultSet.next())
-        println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
-    case 3 =>
-      while (dataResultSet.next())
-        println(dataResultSet.getString("title"), dataResultSet.getString("rating"))
+      while (rs.next())
+        println(s"Title: ${rs.getString("title")}",
+          s"Popularity: ${rs.getString("popularity")}")
+    case 2 | 3 =>
+      while (rs.next())
+        println(s"Title: ${rs.getString("title")}",
+          s"Rating: ${rs.getString("popularity")}")
     case 4 =>
-      while (dataResultSet.next()) {
-        println(dataResultSet.getString("title"), dataResultSet.getString("tag"), dataResultSet.getString("relevance"))
+      while (rs.next()) {
+        println(s"Title: ${rs.getString("title")}",
+          s"Tag: ${rs.getString("popularity")}",
+          s"Relevance: ${rs.getString("popularity")}")
     }
   }
 }
 
 object UI {
-  val file = new File("log.txt")
-  val hasLogFile: Boolean = Files.exists(Paths.get("log.txt"))
-  val bw = new BufferedWriter(new FileWriter(file, hasLogFile))
+  def apply(): UI = {
+    val file = new File("log.txt")
+    val hasLogFile: Boolean = Files.exists(Paths.get("log.txt"))
+    val bw = new BufferedWriter(new FileWriter(file, hasLogFile))
 
-  def apply(): UI = new UI(bw)
+    new UI(bw)
+  }
 }

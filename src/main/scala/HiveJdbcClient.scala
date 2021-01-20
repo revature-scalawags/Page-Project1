@@ -1,4 +1,4 @@
-import java.sql.{Connection, DriverManager, ResultSet, Statement}
+import java.sql.{Connection, DriverManager, ResultSet}
 
 case class HiveJdbcClient(connection: Connection) {
 
@@ -55,18 +55,19 @@ case class HiveJdbcClient(connection: Connection) {
 
 
 object HiveJdbcClient {
-  private final val connectionString = "jdbc:hive2://localhost:10000/default"
-  private final val driver = "org.apache.hive.jdbc.HiveDriver"
-  var connection: Connection = _
+  def apply(): HiveJdbcClient = {
+    val connectionString = "jdbc:hive2://localhost:10000/default"
+    val driver = "org.apache.hive.jdbc.HiveDriver"
+    var connection: Connection = null
 
-  try {
-    Class.forName(driver)
-    connection = DriverManager.getConnection(connectionString, "", "")
+    try {
+      Class.forName(driver)
+      connection = DriverManager.getConnection(connectionString, "", "")
+    }
+    catch {
+      case _: ClassNotFoundException => println("Failed to load the Hive driver.")
+      case e: Exception => e.printStackTrace()
+    }
+    new HiveJdbcClient(connection)
   }
-  catch {
-    case _: ClassNotFoundException => println("Failed to load the Hive driver.")
-    case e: Exception => e.printStackTrace()
-  }
-
-  def apply(): HiveJdbcClient = new HiveJdbcClient(connection)
 }
